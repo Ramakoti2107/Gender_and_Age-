@@ -1,10 +1,7 @@
 streamlit
 deepface
-tensorflow
-keras
+tensorflow-cpu
 opencv-python-headless
 numpy
 pandas
 Pillow
-mtcnn
-retina-face
