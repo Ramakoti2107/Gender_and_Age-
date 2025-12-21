@@ -17,7 +17,7 @@ if uploaded_file:
             result = DeepFace.analyze(
                 img_path="temp.jpg",
                 actions=["age", "gender"],
-                detector_backend="opencv",  # 🔥 VERY IMPORTANT
+                detector_backend="opencv",  
                 enforce_detection=False
             )
 
@@ -29,3 +29,4 @@ if uploaded_file:
 
     except Exception as e:
         st.error("Prediction failed. Please try another image.")
+
