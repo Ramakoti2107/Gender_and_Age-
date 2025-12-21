@@ -1,7 +1,10 @@
 streamlit
-deepface
-tensorflow-cpu
+deepface==0.0.93
+tensorflow==2.15.0
+keras==2.15.0
 opencv-python-headless
 numpy
 pandas
 Pillow
+mtcnn
+retina-face
