@@ -1,0 +1,10 @@
+streamlit
+deepface
+tensorflow
+keras
+opencv-python-headless
+numpy
+pandas
+Pillow
+mtcnn
+retina-face
