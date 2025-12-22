@@ -1,6 +1,5 @@
 import streamlit as st
 from deepface import DeepFace
-import cv2
 
 st.title("Age and Gender Prediction")
 
@@ -17,7 +16,7 @@ if uploaded_file:
             result = DeepFace.analyze(
                 img_path="temp.jpg",
                 actions=["age", "gender"],
-                detector_backend="opencv",  
+                detector_backend="opencv",
                 enforce_detection=False
             )
 
@@ -29,4 +28,3 @@ if uploaded_file:
 
     except Exception as e:
         st.error("Prediction failed. Please try another image.")
-
