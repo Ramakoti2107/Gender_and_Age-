@@ -1,30 +1,25 @@
 import streamlit as st
-from deepface import DeepFace
+import cv2
+import cvlib as cv
+from PIL import Image
+import numpy as np
 
 st.title("Age and Gender Prediction")
 
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
 
 if uploaded_file:
-    with open("temp.jpg", "wb") as f:
-        f.write(uploaded_file.read())
+    image = Image.open(uploaded_file)
+    img = np.array(image)
 
-    st.image("temp.jpg")
+    st.image(image, caption="Uploaded Image", use_column_width=True)
 
-    try:
-        with st.spinner("Analyzing..."):
-            result = DeepFace.analyze(
-                img_path="temp.jpg",
-                actions=["age", "gender"],
-                detector_backend="opencv",
-                enforce_detection=False
-            )
+    faces, confidences = cv.detect_face(img)
 
-        if isinstance(result, list):
-            result = result[0]
+    for face in faces:
+        (startX, startY, endX, endY) = face
+        face_crop = img[startY:endY, startX:endX]
 
-        st.success(f"Age: {result['age']}")
-        st.success(f"Gender: {result['dominant_gender']}")
+        gender, confidence = cv.detect_gender(face_crop)
 
-    except Exception as e:
-        st.error("Prediction failed. Please try another image.")
+        st.success(f"Gender: {gender[0]} ({confidence[0]*100:.2f}%)")
