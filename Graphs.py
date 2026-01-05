@@ -16,10 +16,11 @@ if uploaded_file:
             result = DeepFace.analyze(
                 img_path="temp.jpg",
                 actions=["age", "gender"],
-                detector_backend="opencv",   # cloud-safe
-                enforce_detection=False
+                detector_backend="opencv",   # cloud-safe backend
+                enforce_detection=False      # avoids crash if face not detected
             )
 
+        # DeepFace may return list — pick first element
         if isinstance(result, list):
             result = result[0]
 
